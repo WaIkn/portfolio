@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --eerie-black: #1e1e1e;
+  --yankees-blue: #272643;
+  --bubbles-blue: #e3f6f5;
+  --powder-blue: #bae8e8;
+  --teal-blue: #2c698d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5rem;
+}
+
+body {
+  background-color: var(--yankees-blue);
+  min-height: 100vh;
+  min-width: 100vw;
+  color: white;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+#sidebar {
+  box-sizing: border-box;
+  width: 250px;
+  height: 100vh;
+  padding: 5px 1em;
+  border-right: 1px solid var(--bubbles-blue);
+  background-color: var(--eerie-black);
+  position: sticky;
+  top: 0;
+  align-self: start;
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+
+#sidebar.close {
+  width: 60px;
+  padding: 5px;
+}
+
+#sidebar ul {
+  list-style: none;
+}
+
+#sidebar > ul > li:first-child {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+
+  #nom-side {
+    font-weight: 600;
+  }
+  
+}
+
+#nom-side{
+  color: var(--bubbles-blue);
+  font-size: 1.25em;
+}
+
+#sidebar a, #sidebar #nom-side {
+  text-decoration: none;
+  color: white;
+  border-radius: .5em;
+  padding: .85em;
+  display: flex;
+  align-items:center;
+  gap: 1em;
+}
+
+#sidebar a span {
+  flex-grow: 1;
+}
+
+#sidebar a:hover{
+  background-color: var(--yankees-blue);
+}
+
+#acceuil {
+  background-image: url("images/v617batch2-bb-01-technology.jpg");
+  min-height: 70vh;
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: var(--bubbles-blue);
+  text-shadow: 1px 1px 2px var(--powder-blue);
+  border: 1px solid var(--eerie-black);
+}
+
+section {
+  padding: 32px;
+}
+
+section:nth-child(even) {
+  background-color: var(--teal-blue);
+}
+
+#sidebar svg{
+  flex-shrink: 0;
+  fill: var(--powder-blue)
+}
+
+.rotate svg {
+  rotate: 180deg;
+}
+
+#toggle-btn {
+  margin-left: auto;
+  padding: 1em;
+  border: none;
+  border-radius: .5em;
+  background: none;
+  cursor: pointer;
+
+  svg {
+    transition: rotate 150ms ease;
+  }
+}
+
+#toggle-btn:hover {
+  background-color: var(--yankees-blue);
+}
+
+
+
+
+@Media(max-width: 800px) {
+  
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    
+  }
+
+  .container {
+    padding: 0;
+    border: none;
+  }
+
+  #sidebar {
+    height: 60px;
+    width: 100%;
+    border-top: 1px solid var(--bubbles-blue);
+    position: fixed;
+    bottom: 0;
+    padding: 0px;
+    top: unset;
+
+    ul {
+      padding: 0px;
+      display: grid;
+      grid-auto-columns: 60px;
+      grid-auto-flow: column;
+      align-items: center;
+      overflow-x: scroll;
+    }
+
+    ul li {
+      height: 100%;
+    }
+
+    ul a {
+      border-radius: 0;
+      padding: 0;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+    }
+
+    ul li span , ul li:first-child{
+      display: none;
+    }
+  }
+}
