@@ -103,6 +103,12 @@ body {
 section {
   padding: 32px;
 }
+.section-title {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
 section:nth-child(even) {
   background-color: var(--teal-blue);
@@ -134,6 +140,60 @@ section:nth-child(even) {
   background-color: var(--yankees-blue);
 }
 
+.contact-form , .contact-info{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  box-shadow: #1e1e1e 0px 0px 10px;
+  border: 1px solid var(--bubbles-blue);
+  border-radius: 10px;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.contact-container div {
+  margin: 0 16px;
+}
+
+.contact-form form {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-form input, .contact-form textarea {
+  padding: 10px;
+  border: 1px solid var(--powder-blue);
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--teal-blue);
+}
+
+.contact-form button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--yankees-blue);
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: var(--yankees-blue);
+}
+
+
+
 
 
 
@@ -143,8 +203,16 @@ section:nth-child(even) {
     grid-template-columns: 1fr;
   }
 
-  main {
-    
+  .contact-container {
+    grid-template-columns: 1fr;
+
+    .contact-form {
+      margin-bottom: 16px;
+    }
+  }
+
+  #contact {
+    margin-bottom: 60px;
   }
 
   .container {
