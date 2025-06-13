@@ -5,12 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio SISR - Pierre FRICHET</title>
   
-  <!-- Preload PDF file -->
-  <link rel="preload" href="documents/E5-Tableau.pdf" as="document" type="application/pdf">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Portfolio de Pierre FRICHET - Étudiant BTS SIO SISR spécialisé en administration système et réseaux informatiques">
+  <meta name="keywords" content="SISR, système, réseau, portfolio, BTS SIO, administration système">
+  <meta name="author" content="Pierre FRICHET">
   
-  <link rel="stylesheet" href="style.css">
+  <!-- Security headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="documents/E5-Tableau.pdf" as="fetch" crossorigin>
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="app.js" as="script">
+  
+  <!-- Optimized Font Loading -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-  <script type="text/Javascript" src="app.js" defer></script>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
 
 <body>
@@ -69,9 +87,15 @@
       </ul>
       <div class="sidebar-footer">
         <div class="social-icons">
-          <a href="https://linkedin.com/in/pierre-frichet" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://bsky.app/" target="_blank" aria-label="BlueSky"><i class="fa-brands fa-bluesky"></i></a>
-          <a href="https://github.com/Waikn" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/pierre-frichet" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://bsky.app/" target="_blank" rel="noopener noreferrer" aria-label="BlueSky">
+            <i class="fa-brands fa-bluesky"></i>
+          </a>
+          <a href="https://github.com/Waikn" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
         </div>
       </div>
     </nav>
@@ -106,7 +130,7 @@
             <div class="about-card student-card">
               <div class="about-card-header">
                 <div class="profile-image-container">
-                  <img src="images/profile-placeholder.jpg" alt="Pierre Frichet" class="profile-image">
+                  <img src="images/profile-placeholder.jpg" alt="Pierre Frichet" class="profile-image" width="150" height="150" loading="lazy">
                 </div>
               </div>
               <div class="about-card-content">
@@ -123,7 +147,7 @@
               <div class="about-card-content">
                 <h3>Mon École</h3>
                 <p class="subtitle">IPSSI - Paris</p>
-                <p>L’IPSSI (Institut Privé Supérieur du Système d’Information) est une école d’informatique située à Paris, avec des campus dans plusieurs villes de France et des formations accessibles à distance. Spécialisée en cybersécurité, intelligence artificielle, big data, développement et blockchain, elle propose des cursus de Bac+2 à Bac+5 (BTS, Bachelors, Mastères). L’enseignement est axé sur la pratique et l’alternance, avec un fort taux de réussite et d’insertion professionnelle. L’IPSSI organise régulièrement des journées portes ouvertes pour présenter ses formations et son accompagnement.</p>
+                <p>L'IPSSI (Institut Privé Supérieur du Système d'Information) est une école d'informatique située à Paris, spécialisée en cybersécurité, intelligence artificielle, big data, développement et blockchain. Elle propose des cursus de Bac+2 à Bac+5 avec un enseignement axé sur la pratique et l'alternance, offrant un fort taux de réussite et d'insertion professionnelle.</p>
               </div>
             </div>
             
@@ -134,7 +158,7 @@
               <div class="about-card-content">
                 <h3>BTS SIO option SISR</h3>
                 <p class="subtitle">Solutions d'Infrastructure, Systèmes et Réseaux</p>
-                <p>Le BTS Services Informatiques aux Organisations (SIO), option Solutions d’Infrastructure, Systèmes et Réseaux (SISR), est une formation de deux ans qui prépare aux métiers de l’administration des systèmes et réseaux informatiques. Elle forme des techniciens capables d’installer, configurer et maintenir des infrastructures réseau, de gérer la sécurité des systèmes d'information, ainsi que d’assurer le support aux utilisateurs. Cette formation met l’accent sur la pratique professionnelle à travers des projets concrets et des stages en entreprise.</p>
+                <p>Le BTS Services Informatiques aux Organisations (SIO), option Solutions d'Infrastructure, Systèmes et Réseaux (SISR), forme des techniciens capables d'installer, configurer et maintenir des infrastructures réseau, de gérer la sécurité des systèmes d'information, ainsi que d'assurer le support aux utilisateurs.</p>
               </div>
             </div>
           </div>
@@ -608,26 +632,26 @@
               <div class="contact-social">
                 <h3>Réseaux sociaux</h3>
                 <div class="social-links">
-                  <a href="https://www.linkedin.com/in/pierre-frichet/" target="_blank" class="social-link">
+                  <a href="https://www.linkedin.com/in/pierre-frichet/" target="_blank" rel="noopener noreferrer" class="social-link">
                     <i class="fab fa-linkedin"></i>
                     <span>LinkedIn</span>
                   </a>
-                  <a href="https://bsky.app/" target="_blank" class="social-link">
+                  <a href="https://bsky.app/" target="_blank" rel="noopener noreferrer" class="social-link">
                     <i class="fa-brands fa-bluesky"></i>
                     <span>BlueSky</span>
                   </a>
-                  <a href="https://github.com/WaIkn" target="_blank" class="social-link">
+                  <a href="https://github.com/WaIkn" target="_blank" rel="noopener noreferrer" class="social-link">
                     <i class="fab fa-github"></i>
                     <span>GitHub</span>
                   </a>
                 </div>
               </div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" id="contact-form">
               <h3>Envoyez-moi un message</h3>
               <div class="form-group">
                 <label for="name">Nom</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" required pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]{2,50}" title="Veuillez entrer un nom valide (2-50 caractères)">
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
@@ -635,11 +659,11 @@
               </div>
               <div class="form-group">
                 <label for="subject">Sujet</label>
-                <input type="text" id="subject" name="subject">
+                <input type="text" id="subject" name="subject" maxlength="100">
               </div>
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <textarea id="message" name="message" rows="5" required maxlength="1000"></textarea>
               </div>
               <button type="submit" class="submit-btn">Envoyer</button>
             </form>
@@ -647,7 +671,7 @@
         </div>
       </section>
       
-      <!-- EPREUVE E5 SECTION -->
+      <!-- E5 SECTION -->
       <section id="epreuve">
         <div class="section-title">
           <i class="fas fa-graduation-cap"></i>
@@ -662,6 +686,7 @@
             <div class="pdf-viewer-container">
               <div class="pdf-loading">
                 <div class="loading-spinner"></div>
+                <p>Chargement du PDF...</p>
               </div>
               <div class="pdf-viewer" id="pdf-viewer">
                 <object 
@@ -670,7 +695,7 @@
                   width="100%" 
                   height="800px" 
                   id="pdf-object">
-                  <p>Votre navigateur ne peut pas afficher le PDF directement. <a href="documents/E5-Tableau.pdf" target="_blank">Téléchargez-le ici</a>.</p>
+                  <p>Votre navigateur ne peut pas afficher le PDF directement. <a href="documents/E5-Tableau.pdf" target="_blank" rel="noopener noreferrer">Téléchargez-le ici</a>.</p>
                 </object>
               </div>
             </div>
@@ -687,5 +712,5 @@
       <i class="fas fa-arrow-up"></i>
     </div>
   </div>
-  </body>
+</body>
 </html>

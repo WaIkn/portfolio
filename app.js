@@ -1,121 +1,171 @@
+/**
+ * Portfolio App Script
+ * Author: Pierre FRICHET
+ * Version: 2.0.0
+ */
+
+// Utility functions
+const utils = {
+  // Debounce function to limit execution frequency
+  debounce: (func, delay) => {
+    let timer;
+    return function(...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => func.apply(this, args), delay);
+    };
+  },
+  
+  // Simple input sanitization
+  sanitizeInput: (input) => {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+  },
+  
+  // Check if element is in viewport
+  isInViewport: (element) => {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
+};
+
+// Main application
 document.addEventListener('DOMContentLoaded', () => {
-  // Sidebar Toggle
-  const toggleButton = document.getElementById('toggle-btn');
+  // Cache DOM elements
   const sidebar = document.getElementById('sidebar');
-  
-  toggleButton.addEventListener('click', () => {
-    sidebar.classList.toggle('close');
-  });
-  
-  // Active navigation item
+  const toggleButton = document.getElementById('toggle-btn');
   const sections = document.querySelectorAll('section');
   const navItems = document.querySelectorAll('.nav-item');
+  const backToTopBar = document.getElementById('back-to-top-bar');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const docCards = document.querySelectorAll('.doc-card');
+  const contactForm = document.getElementById('contact-form');
+  const canvas = document.getElementById('hero-canvas');
+  const typingTextElement = document.getElementById('typing-text');
+  const veilleItems = document.querySelectorAll('.veille-item');
+  const pdfObject = document.getElementById('pdf-object');
+  const pdfLoading = document.querySelector('.pdf-loading');
   
+  // 1. Sidebar functionality
+  if (toggleButton && sidebar) {
+    toggleButton.addEventListener('click', () => {
+      sidebar.classList.toggle('close');
+      // Save state to localStorage
+      localStorage.setItem('sidebarClosed', sidebar.classList.contains('close'));
+    });
+    
+    // Restore sidebar state
+    const sidebarClosed = localStorage.getItem('sidebarClosed') === 'true';
+    if (sidebarClosed) {
+      sidebar.classList.add('close');
+    }
+  }
+  
+  // 2. Active navigation tracking
   function setActiveNavItem() {
-    let current = '';
+    let currentSection = '';
     
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      
       if (window.scrollY >= (sectionTop - 100)) {
-        current = section.getAttribute('id');
+        currentSection = section.getAttribute('id');
       }
     });
     
     navItems.forEach((item) => {
       item.classList.remove('active');
-      if (item.getAttribute('href') === `#${current}`) {
+      if (item.getAttribute('href') === `#${currentSection}`) {
         item.classList.add('active');
       }
     });
   }
   
-  window.addEventListener('scroll', setActiveNavItem);
-  
-  // Back to top bar
-  const backToTopBar = document.getElementById('back-to-top-bar');
-  
+  // 3. Back to top functionality
   function toggleBackToTopBar() {
-    // Check if we're near the bottom of the page
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     
-    // Show when we're within 300px of the bottom or at least 500px from the top
-    if (scrollPosition + windowHeight >= documentHeight - 100 || scrollPosition > 10000) {
+    if (scrollPosition + windowHeight >= documentHeight - 100 || scrollPosition > 500) {
       backToTopBar.classList.add('visible');
     } else {
       backToTopBar.classList.remove('visible');
     }
   }
   
-  window.addEventListener('scroll', toggleBackToTopBar);
-  
-  backToTopBar.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-  
-  // Document filtering
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const docCards = document.querySelectorAll('.doc-card');
-  
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove active class from all buttons
-      filterButtons.forEach(button => button.classList.remove('active'));
-      
-      // Add active class to clicked button
-      btn.classList.add('active');
-      
-      // Get filter value
-      const filterValue = btn.getAttribute('data-filter');
-      
-      // Filter documents
-      docCards.forEach(card => {
-        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-          card.style.display = 'flex';
-          // Add animation
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
-        }
+  if (backToTopBar) {
+    backToTopBar.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
     });
-  });
+  }
   
-  // Form submission handling
-  const contactForm = document.querySelector('.contact-form');
+  // 4. Document filtering
+  function setupDocumentFiltering() {
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach(button => button.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Get filter value
+        const filterValue = btn.getAttribute('data-filter');
+        
+        // Filter documents
+        docCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+            // Add animation
+            requestAnimationFrame(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  }
   
+  // 5. Form submission with validation
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Get form data
+      // Form validation
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+      
+      if (!nameInput.validity.valid || !emailInput.validity.valid || !messageInput.validity.valid) {
+        return;
+      }
+      
+      // Get and sanitize form data
       const formData = new FormData(this);
       const formDataObj = {};
       formData.forEach((value, key) => {
-        formDataObj[key] = value;
+        formDataObj[key] = utils.sanitizeInput(value);
       });
       
-      // Here you would typically send the data to a server
-      // For now, we'll just add some visual feedback
+      // Visual feedback
       const submitBtn = contactForm.querySelector('.submit-btn');
       const originalText = submitBtn.textContent;
       
       submitBtn.textContent = 'Envoi en cours...';
       submitBtn.disabled = true;
       
+      // Simulate form submission (in a real app, this would be an AJAX call)
       setTimeout(() => {
         submitBtn.textContent = 'Envoyé !';
         submitBtn.style.backgroundColor = 'var(--color-secondary)';
@@ -133,19 +183,146 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Hero Section - Tech Network Animation
-  const canvas = document.getElementById('hero-canvas');
+  // 6. Canvas animation (only initialize if canvas exists)
   if (canvas) {
+    initializeHeroAnimation(canvas);
+  }
+  
+  // 7. Typing animation
+  function initializeTypingAnimation() {
+    if (!typingTextElement) return;
+    
+    const textToType = ["Linux", "Windows Server", "Active Directory", "Proxmox", "Réseaux", "Zabbix", "GLPI", "PowerShell", "Bash"];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingDelay = 150;
+    
+    function typeText() {
+      const currentText = textToType[textIndex];
+      
+      if (isDeleting) {
+        typingTextElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        typingDelay = 80;
+      } else {
+        typingTextElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        typingDelay = 150;
+      }
+      
+      if (!isDeleting && charIndex === currentText.length) {
+        isDeleting = true;
+        typingDelay = 1000;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % textToType.length;
+        typingDelay = 300;
+      }
+      
+      setTimeout(typeText, typingDelay);
+    }
+    
+    setTimeout(typeText, 1500);
+  }
+  
+  // 8. Veille Technologique animations
+  function setupVeilleAnimations() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const veilleObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          veilleObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    veilleItems.forEach((item, index) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = `all 0.4s ease ${index * 0.1}s`;
+      veilleObserver.observe(item);
+    });
+    
+    // Veille tag click handlers using event delegation
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('veille-tag')) {
+        const tagText = e.target.textContent.trim().toLowerCase();
+        console.log(`Filter by: ${tagText}`);
+        // Future enhancement: implement filtering by tag
+      }
+    });
+  }
+  
+  // 9. PDF preloading
+  function setupPDFPreloading() {
+    if (pdfObject && pdfLoading) {
+      // Function to check if PDF is loaded
+      const checkPDFLoaded = () => {
+        if (pdfObject.contentDocument && pdfObject.contentDocument.readyState === 'complete') {
+          pdfLoading.classList.add('hidden');
+        }
+      };
+      
+      // Check PDF loading status
+      pdfObject.addEventListener('load', checkPDFLoaded);
+      
+      // Also check after a timeout for fallback
+      setTimeout(() => {
+        pdfLoading.classList.add('hidden');
+      }, 5000);
+      
+      // Pre-fetch the PDF using fetch API
+      fetch('documents/E5-Tableau.pdf')
+        .then(response => {
+          if (response.ok) {
+            console.log('PDF pre-fetched successfully');
+          }
+        })
+        .catch(error => {
+          console.error('Error pre-fetching PDF:', error);
+        });
+    }
+  }
+  
+  // Helper function for hero animation
+  function initializeHeroAnimation(canvas) {
     const ctx = canvas.getContext('2d');
     
-    // Set canvas dimensions
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    // Set canvas dimensions with proper scaling for high-DPI displays
+    function setCanvasDimensions() {
+      const devicePixelRatio = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      
+      canvas.width = rect.width * devicePixelRatio;
+      canvas.height = rect.height * devicePixelRatio;
+      
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+      
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+      
+      return {
+        width: rect.width,
+        height: rect.height
+      };
+    }
     
-    // Animation config
+    const dimensions = setCanvasDimensions();
+    let width = dimensions.width;
+    let height = dimensions.height;
+    
+    // Animation config - optimized for performance
     const config = {
-      particleCount: 100,
-      particleColor: getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#4f46e5',
+      particleCount: getOptimalParticleCount(),
+      particleColor: getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#64ffda',
       particleSizeMin: 2,
       particleSizeMax: 4,
       connectionDistance: 150,
@@ -156,6 +333,19 @@ document.addEventListener('DOMContentLoaded', () => {
       mouseRadius: 150,
       mouseForce: 0.5
     };
+    
+    // Determine optimal particle count based on screen size and device performance
+    function getOptimalParticleCount() {
+      const area = window.innerWidth * window.innerHeight;
+      
+      // Low performance mode for slower devices
+      if (navigator.hardwareConcurrency <= 2) {
+        return Math.min(30, Math.floor(area / 30000));
+      }
+      
+      // Normal mode
+      return Math.min(100, Math.max(30, Math.floor(area / 20000)));
+    }
     
     // Particle class
     class Particle {
@@ -356,86 +546,27 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
   }
   
-  // Typing Animation for the hero section
-  const typingTextElement = document.getElementById('typing-text');
-  if (typingTextElement) {
-    const textToType = ["Linux", "Windows Server", "Active Directory", "Proxmox", "Réseaux", "Zabbix", "GLPI", "PowerShell", "Bash"];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingDelay = 150;
-    
-    function typeText() {
-      const currentText = textToType[textIndex];
-      
-      if (isDeleting) {
-        typingTextElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        typingDelay = 80;
-      } else {
-        typingTextElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-        typingDelay = 150;
-      }
-      
-      if (!isDeleting && charIndex === currentText.length) {
-        isDeleting = true;
-        typingDelay = 1000;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % textToType.length;
-        typingDelay = 300;
-      }
-      
-      setTimeout(typeText, typingDelay);
+  // Add event listeners with performance optimization
+  const debouncedScroll = utils.debounce(() => {
+    setActiveNavItem();
+    toggleBackToTopBar();
+  }, 100);
+  
+  window.addEventListener('scroll', debouncedScroll);
+  window.addEventListener('resize', utils.debounce(() => {
+    if (canvas) {
+      // Resize canvas if it exists
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    
-    setTimeout(typeText, 1500);
-  }
+  }, 200));
   
-  // Veille Technologique animations
-  const veilleItems = document.querySelectorAll('.veille-item');
-  
-  // Add animation when scrolling to veille items
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  };
-  
-  const veilleObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        veilleObserver.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-  
-  // Set up initial state and observe
-  veilleItems.forEach((item, index) => {
-    // Set initial state
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = `all 0.4s ease ${index * 0.1}s`;
-    
-    // Observe item
-    veilleObserver.observe(item);
-  });
-  
-  // Add click listener for veille tags to filter content
-  const veilleTags = document.querySelectorAll('.veille-tag');
-  
-  veilleTags.forEach(tag => {
-    tag.addEventListener('click', function() {
-      const tagText = this.textContent.trim().toLowerCase();
-      console.log(`Filter by: ${tagText}`);
-      // Future enhancement: implement filtering by tag
-    });
-  });
-  
-  // Initialize
+  // Initialize all components
   setActiveNavItem();
   toggleBackToTopBar();
+  setupDocumentFiltering();
+  initializeTypingAnimation();
+  setupVeilleAnimations();
+  setupPDFPreloading();
 });
