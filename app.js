@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     
-    if (scrollPosition + windowHeight >= documentHeight - 100 || scrollPosition > 500) {
+    if (scrollPosition + windowHeight >= documentHeight - 5) {
       backToTopBar.classList.add('visible');
     } else {
       backToTopBar.classList.remove('visible');
