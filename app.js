@@ -546,6 +546,34 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
   }
   
+  // Timeline animations
+  const timelineEntries = document.querySelectorAll('.timeline-entry');
+  
+  const timelineObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        timelineObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  });
+  
+  // Set up initial state and observe
+  timelineEntries.forEach((item, index) => {
+    // Set initial state
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    item.style.transition = `all 0.6s ease ${index * 0.2}s`;
+    
+    // Observe item
+    timelineObserver.observe(item);
+  });
+  
   // Add event listeners with performance optimization
   const debouncedScroll = utils.debounce(() => {
     setActiveNavItem();

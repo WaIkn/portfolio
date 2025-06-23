@@ -1,7 +1,7 @@
 /* 
- * Portfolio Stylesheet - Optimized version
+ * Portfolio Stylesheet - Modern Tech Theme
  * Author: Pierre FRICHET
- * Version: 2.0.0 
+ * Version: 2.1.0 
  */
 
 /* Import fonts with display:swap for better loading performance */
@@ -23,19 +23,29 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* CSS Variables for theme consistency */
+/* Updated CSS Variables for theme consistency - Improved Eye Comfort */
 :root {
-  /* Color Palette - IT/Network Theme */
-  --color-background: #0a192f;
-  --color-surface: #112240;
-  --color-surface-variant: #1e2a45;
-  --color-primary: #64ffda;
-  --color-primary-variant: #4cd3a9;
-  --color-secondary: #58a6ff;
-  --color-accent: #f08c00;
-  --color-text: #e6f1ff;
-  --color-text-muted: #a8b2d1;
+  /* Main Background Colors - Softer Dark Mode */
+  --color-background: #121826;         /* Deep muted blue-gray background */
+  --color-surface: #1c2333;            /* Slightly lighter surface */
+  --color-surface-variant: #2a3349;    /* Card backgrounds */
   
+  /* Primary Colors - Teal Family */
+  --color-primary: #65d6ad;            /* Soft teal as primary */
+  --color-primary-variant: #50c096;    /* Slightly darker teal */
+  
+  /* Secondary & Accent Colors - Expanded Palette */
+  --color-secondary: #7c9ff6;          /* Soft periwinkle blue */
+  --color-accent: #f8ae5d;             /* Warm amber/orange */
+  --color-success: #7eba77;            /* Muted green */
+  --color-warning: #e7b75c;            /* Soft amber */
+  --color-error: #e56e73;              /* Muted red */
+  
+  /* Text Colors - Easier on Eyes */
+  --color-text: #eceff4;               /* Off-white for text */
+  --color-text-muted: #a5b1c9;         /* Soft blue-gray for secondary text */
+  
+  /* The rest of your variables remain unchanged */
   /* Typography */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -58,16 +68,16 @@
   --space-12: 3rem;
   --space-16: 4rem;
   
-  /* Transitions - Use GPU-accelerated properties */
+  /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(2, 12, 27, 0.2);
-  --shadow-md: 0 4px 8px rgba(2, 12, 27, 0.3);
-  --shadow-lg: 0 10px 20px rgba(2, 12, 27, 0.4);
-  --shadow-xl: 0 20px 30px rgba(2, 12, 27, 0.5);
+  /* Shadows with updated colors */
+  --shadow-sm: 0 2px 4px rgba(13, 18, 30, 0.15);
+  --shadow-md: 0 4px 8px rgba(13, 18, 30, 0.25);
+  --shadow-lg: 0 10px 20px rgba(13, 18, 30, 0.35);
+  --shadow-xl: 0 20px 30px rgba(13, 18, 30, 0.45);
   
   /* Border Radius */
   --radius-sm: 0.25rem;
@@ -242,7 +252,7 @@ body {
   list-style: none;
   margin-top: var(--space-4);
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: none;
 }
 
 .nav-links::-webkit-scrollbar {
@@ -315,13 +325,45 @@ body {
 
 .sidebar-footer {
   padding: var(--space-4);
+  padding-bottom: var(--space-6);
   border-top: 1px solid rgba(230, 241, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .social-icons {
   display: flex;
   gap: var(--space-3);
   justify-content: center;
+  transition: flex-direction var(--transition-normal);
+}
+
+/* Vertical icons when sidebar is closed */
+#sidebar.close .social-icons {
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--space-4);
+}
+
+/* Adjust spacing between vertical icons */
+#sidebar.close .social-icons a {
+  margin-bottom: var(--space-3);
+}
+
+/* Keep icons visible in closed state */
+#sidebar.close .sidebar-footer {
+  padding: var(--space-2);
+  padding-top: var(--space-6);
+  align-items: center;
+}
+
+/* Hide only the copyright when closed, not the entire footer */
+#sidebar.close .sidebar-copyright {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .social-icons a {
@@ -341,6 +383,31 @@ body {
   background-color: rgba(100, 255, 218, 0.1);
   color: var(--color-primary);
   transform: translateY(-2px);
+}
+
+/* Copyright in sidebar */
+.sidebar-copyright {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  opacity: 0.6;
+  transition: opacity var(--transition-normal), 
+              height var(--transition-normal) 0.1s,
+              margin var(--transition-normal) 0.1s;
+  height: auto;
+  overflow: hidden;
+}
+
+.sidebar-copyright p {
+  margin-bottom: 0;
+}
+
+/* Hide copyright text when sidebar is closed */
+#sidebar.close .sidebar-copyright {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* ======== MAIN CONTENT STYLES ======== */
@@ -493,7 +560,7 @@ section:nth-child(even) {
 
 .cta-button {
   display: inline-block;
-  background-color: rgba(100, 255, 218, 0.1);
+  background-color: rgba(56, 189, 248, 0.1);
   color: var(--color-primary);
   text-decoration: none;
   padding: var(--space-3) var(--space-6);
@@ -507,9 +574,27 @@ section:nth-child(even) {
 }
 
 .cta-button:hover {
-  background-color: rgba(100, 255, 218, 0.2);
+  background-color: rgba(56, 189, 248, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(100, 255, 218, 0.3);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+}
+
+/* New gradient and accent classes */
+.accent-gradient-bg {
+  background: linear-gradient(120deg, var(--color-surface) 0%, var(--color-surface-variant) 100%);
+}
+
+/* Skill category accent variations */
+.accent-primary {
+  border-left: 3px solid var(--color-primary);
+}
+
+.accent-secondary {
+  border-left: 3px solid var(--color-secondary);
+}
+
+.accent-accent {
+  border-left: 3px solid var(--color-accent);
 }
 
 /* Animation Keyframes */
@@ -1369,4 +1454,243 @@ input, textarea {
 .rss-category h5 .fa-microchip {
   color: var(--color-primary);
   animation: pulse 2s infinite;
+}
+
+/* Update the back-to-top bar with gradient */
+#back-to-top-bar {
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+/* Add a cool gradient effect to section titles */
+.section-title::after {
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+/* ======== TIMELINE STYLES ======== */
+#parcours {
+  position: relative;
+  background-color: var(--color-background);
+  z-index: 1;
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 1200px;
+  margin: var(--space-8) auto;
+  padding: 0 var(--space-4);
+}
+
+/* Timeline vertical line */
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom,
+    rgba(101, 214, 173, 0.3),
+    rgba(124, 159, 246, 0.3),
+    rgba(101, 214, 173, 0.3));
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--radius-full);
+}
+
+/* Timeline Entry */
+.timeline-entry {
+  position: relative;
+  margin-bottom: var(--space-12);
+  width: 100%;
+}
+
+.timeline-entry:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline Dot (the circle on the line) */
+.timeline-dot {
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 0 4px rgba(101, 214, 173, 0.3);
+  transition: all var(--transition-normal);
+}
+
+.timeline-entry:hover .timeline-dot {
+  background: var(--color-secondary);
+  box-shadow: 0 0 0 6px rgba(124, 159, 246, 0.4);
+  transform: translateX(-50%) scale(1.2);
+}
+
+/* Timeline content positioning */
+.timeline-content {
+  width: 45%;
+}
+
+.timeline-entry.left .timeline-content {
+  margin-left: 5%;
+}
+
+.timeline-entry.right .timeline-content {
+  margin-left: 50%;
+}
+
+/* Timeline Date */
+.timeline-date {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+  display: inline-block;
+  background-color: rgba(101, 214, 173, 0.1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(101, 214, 173, 0.2);
+}
+
+/* Timeline Card */
+.timeline-card {
+  background-color: var(--color-surface-variant);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  display: flex;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.timeline-entry:hover .timeline-card {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Different colors for different types of entries */
+.timeline-entry:nth-child(2) .timeline-card {
+  border-left: 3px solid var(--color-primary);
+}
+
+.timeline-entry:nth-child(3) .timeline-card {
+  border-left: 3px solid var(--color-secondary);
+}
+
+.timeline-entry:nth-child(4) .timeline-card {
+  border-left: 3px solid var(--color-accent);
+}
+
+.timeline-entry:nth-child(5) .timeline-card {
+  border-left: 3px solid var(--color-success);
+}
+
+/* Timeline Icon */
+.timeline-icon {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(101, 214, 173, 0.1);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+/* Different icon colors for different entries */
+.timeline-entry:nth-child(2) .timeline-icon {
+  color: var(--color-primary);
+  background-color: rgba(101, 214, 173, 0.1);
+}
+
+.timeline-entry:nth-child(3) .timeline-icon {
+  color: var(--color-secondary);
+  background-color: rgba(124, 159, 246, 0.1);
+}
+
+.timeline-entry:nth-child(4) .timeline-icon {
+  color: var(--color-accent);
+  background-color: rgba(248, 174, 93, 0.1);
+}
+
+.timeline-entry:nth-child(5) .timeline-icon {
+  color: var(--color-success);
+  background-color: rgba(126, 186, 119, 0.1);
+}
+
+/* Timeline Details */
+.timeline-details {
+  flex: 1;
+}
+
+.timeline-details h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+  color: var(--color-text);
+}
+
+.timeline-details h5 {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  font-weight: 400;
+}
+
+.timeline-details p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  line-height: 1.6;
+}
+
+/* Timeline Tags */
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.timeline-tag {
+  background-color: rgba(230, 241, 255, 0.05);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.timeline-tag:hover {
+  background-color: rgba(101, 214, 173, 0.1);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments for timeline */
+@media (max-width: 767px) {
+  .timeline-line {
+    left: 20px;
+  }
+  
+  .timeline-dot {
+    left: 20px;
+    transform: none;
+  }
+  
+  .timeline-entry:hover .timeline-dot {
+    transform: scale(1.2);
+  }
+  
+  .timeline-content {
+    width: calc(100% - 40px);
+  }
+  
+  .timeline-entry.left .timeline-content,
+  .timeline-entry.right .timeline-content {
+    margin-left: 40px;
+  }
 }
