@@ -1587,6 +1587,16 @@ input, textarea {
   border-left: 3px solid var(--color-success);
 }
 
+/* University entry styling */
+.timeline-entry:nth-child(6) .timeline-card {
+  border-left: 3px solid var(--color-warning);
+}
+
+.timeline-entry:nth-child(6) .timeline-icon {
+  color: var(--color-warning);
+  background-color: rgba(231, 183, 92, 0.1);
+}
+
 /* Timeline Icon */
 .timeline-icon {
   width: 48px;
@@ -1692,5 +1702,309 @@ input, textarea {
   .timeline-entry.left .timeline-content,
   .timeline-entry.right .timeline-content {
     margin-left: 40px;
+  }
+}
+
+/* ======== CERTIFICATIONS SECTION ======== */
+.certifications-intro {
+  max-width: 800px;
+  margin: 0 auto var(--space-8) auto;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  background-color: var(--color-surface-variant);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-primary);
+}
+
+.certifications-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+.certification-card {
+  background-color: var(--color-surface-variant);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  border-left: 4px solid var(--color-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.certification-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.certification-card:hover::before {
+  transform: scaleX(1);
+}
+
+.certification-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Different states for certifications */
+.certification-card.in-progress {
+  border-left-color: var(--color-warning);
+}
+
+.certification-card.in-progress::before {
+  background: var(--color-warning);
+}
+
+.certification-card.planned {
+  border-left-color: var(--color-secondary);
+}
+
+.certification-card.planned::before {
+  background: var(--color-secondary);
+}
+
+.certification-card.learning-platform {
+  border-left-color: var(--color-accent);
+}
+
+.certification-card.learning-platform::before {
+  background: var(--color-accent);
+}
+
+.certification-badge {
+  width: 60px;
+  height: 60px;
+  background: rgba(101, 214, 173, 0.1);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+  color: var(--color-primary);
+  font-size: var(--font-size-2xl);
+}
+
+.certification-card.in-progress .certification-badge {
+  background: rgba(231, 183, 92, 0.1);
+  color: var(--color-warning);
+}
+
+.certification-card.planned .certification-badge {
+  background: rgba(124, 159, 246, 0.1);
+  color: var(--color-secondary);
+}
+
+.certification-card.learning-platform .certification-badge {
+  background: rgba(248, 174, 93, 0.1);
+  color: var(--color-accent);
+}
+
+.certification-content h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.certification-code {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+  font-family: 'Courier New', monospace;
+  background: rgba(101, 214, 173, 0.1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.certification-card.in-progress .certification-code {
+  color: var(--color-warning);
+  background: rgba(231, 183, 92, 0.1);
+}
+
+.certification-card.planned .certification-code {
+  color: var(--color-secondary);
+  background: rgba(124, 159, 246, 0.1);
+}
+
+.certification-card.learning-platform .certification-code {
+  color: var(--color-accent);
+  background: rgba(248, 174, 93, 0.1);
+}
+
+.certification-description {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.certification-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.certification-date {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.certification-status {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.certification-status.valid {
+  background: rgba(126, 186, 119, 0.2);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.certification-status.in-progress {
+  background: rgba(231, 183, 92, 0.2);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
+}
+
+.certification-status.planned {
+  background: rgba(124, 159, 246, 0.2);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+}
+
+.certification-status.ongoing {
+  background: rgba(248, 174, 93, 0.2);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.certification-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.skill-badge {
+  background: rgba(230, 241, 255, 0.05);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.skill-badge:hover {
+  background: rgba(101, 214, 173, 0.1);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* Learning Methodology Section */
+.learning-methodology {
+  background-color: var(--color-surface-variant);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.learning-methodology h3 {
+  text-align: center;
+  font-size: var(--font-size-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
+  position: relative;
+}
+
+.learning-methodology h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-6);
+}
+
+.methodology-item {
+  text-align: center;
+  padding: var(--space-4);
+  background: rgba(230, 241, 255, 0.02);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+}
+
+.methodology-item:hover {
+  background: rgba(230, 241, 255, 0.05);
+  transform: translateY(-5px);
+}
+
+.methodology-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(101, 214, 173, 0.1);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-3) auto;
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+}
+
+.methodology-item h4 {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.methodology-item p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .certifications-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .certification-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .methodology-grid {
+    grid-template-columns: 1fr;
   }
 }
