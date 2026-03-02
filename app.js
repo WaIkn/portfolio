@@ -541,6 +541,25 @@ document.addEventListener('DOMContentLoaded', () => {
     timelineObserver.observe(item);
   });
   
+  // PDF loading handler
+  const pdfObject = document.getElementById('pdf-object');
+  const pdfLoading = document.querySelector('.pdf-loading');
+  const pdfViewer = document.getElementById('pdf-viewer');
+
+  if (pdfObject && pdfLoading && pdfViewer) {
+    const showPdf = () => {
+      pdfLoading.classList.add('hidden');
+      pdfViewer.classList.add('loaded');
+    };
+
+    pdfObject.addEventListener('load', showPdf);
+
+    // Fallback: if load event never fires (some browsers), hide loader after 6s
+    const pdfFallback = setTimeout(showPdf, 6000);
+
+    pdfObject.addEventListener('load', () => clearTimeout(pdfFallback));
+  }
+
   // Add event listeners with performance optimization
   const debouncedScroll = utils.debounce(() => {
     setActiveNavItem();
