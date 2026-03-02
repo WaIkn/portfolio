@@ -46,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('hero-canvas');
   const typingTextElement = document.getElementById('typing-text');
   const veilleItems = document.querySelectorAll('.veille-item');
-  const pdfObject = document.getElementById('pdf-object');
-  const pdfLoading = document.querySelector('.pdf-loading');
   
   // 1. Sidebar functionality
   if (toggleButton && sidebar) {
@@ -259,37 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Future enhancement: implement filtering by tag
       }
     });
-  }
-  
-  // 9. PDF preloading
-  function setupPDFPreloading() {
-    if (pdfObject && pdfLoading) {
-      // Function to check if PDF is loaded
-      const checkPDFLoaded = () => {
-        if (pdfObject.contentDocument && pdfObject.contentDocument.readyState === 'complete') {
-          pdfLoading.classList.add('hidden');
-        }
-      };
-      
-      // Check PDF loading status
-      pdfObject.addEventListener('load', checkPDFLoaded);
-      
-      // Also check after a timeout for fallback
-      setTimeout(() => {
-        pdfLoading.classList.add('hidden');
-      }, 5000);
-      
-      // Pre-fetch the PDF using fetch API
-      fetch('documents/E5-Tableau.pdf')
-        .then(response => {
-          if (response.ok) {
-            console.log('PDF pre-fetched successfully');
-          }
-        })
-        .catch(error => {
-          console.error('Error pre-fetching PDF:', error);
-        });
-    }
   }
   
   // Helper function for hero animation
@@ -596,5 +563,4 @@ document.addEventListener('DOMContentLoaded', () => {
   setupDocumentFiltering();
   initializeTypingAnimation();
   setupVeilleAnimations();
-  setupPDFPreloading();
 });
