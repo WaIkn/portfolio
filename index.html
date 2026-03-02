@@ -449,7 +449,6 @@
                   </div>
                 </div>
               </div>
-            </div>
             
             <div class="skill-category">
               <div class="skill-category-header">
@@ -476,7 +475,6 @@
                   </div>
                 </div>
               </div>
-            </div>
             
             <div class="skill-category">
               <div class="skill-category-header">
@@ -503,7 +501,6 @@
                   </div>
                 </div>
               </div>
-            </div>
             
             <div class="skill-category">
               <div class="skill-category-header">
@@ -530,7 +527,6 @@
                   </div>
                 </div>
               </div>
-            </div>
             
             <div class="skill-category">
               <div class="skill-category-header">
@@ -557,7 +553,6 @@
                   </div>
                 </div>
               </div>
-            </div>
             
             <div class="skill-category">
               <div class="skill-category-header">
@@ -624,64 +619,95 @@
         </div>
         <div class="section-content">
           <div class="veille-container">
-            <div class="veille-intro">
-              <p>Ma veille technologique est axee sur deux domaines principaux : l'architecture RISC-V et la steganographie.</p>
-              <div class="veille-sources">
-                <h3>Mes sources principales</h3>
-                
-                <!-- Direct Sources Section -->
-                <div class="sources-group">
-                  <h4><i class="fas fa-bookmark"></i> Sources directes</h4>
-                  <div class="source-tags">
-                    <span class="source-tag">LeMagIT</span>
-                    <span class="source-tag">Next INpact</span>
-                    <span class="source-tag">Reddit r/RISCV</span>
-                    <span class="source-tag">Hacker News</span>
-                    <span class="source-tag">ZDNet</span>
+
+            <!-- Intro -->
+            <p class="veille-intro">
+              Ma veille technologique est axée sur deux domaines qui me passionnent : l'architecture <strong>RISC-V</strong> et la <strong>Stéganographie</strong>.
+            <div class="veille-topics-grid">
+
+              <!-- RISC-V Card -->
+              <div class="veille-topic-card">
+                <div class="veille-topic-header">
+                  <div class="veille-topic-icon">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <div>
+                    <span class="veille-topic-label">Architecture</span>
+                    <h3>RISC-V</h3>
                   </div>
                 </div>
-                
-                <!-- RSS Sources by Topic -->
-                <div class="sources-group">
-                  <h4><i class="fas fa-rss"></i> Flux RSS par domaine</h4>
-                  
-                  <div class="rss-category">
-                    <h5><i class="fas fa-microchip"></i> RISC-V</h5>
-                    <div class="source-tags rss-tags">
-                      <span class="source-tag"><span class="rss-dot"></span> RISCV.org</span>
-                      <span class="source-tag"><span class="rss-dot"></span> SiFive Blog</span>
-                      <span class="source-tag"><span class="rss-dot"></span> Embedded Computing Design</span>
-                    </div>
-                  </div>
-                  
-                  <div class="rss-category">
-                    <h5><i class="fas fa-shield-alt"></i> Steganographie</h5>
-                    <div class="source-tags rss-tags">
-                      <span class="source-tag"><span class="rss-dot"></span> CERT-FR</span>
-                      <span class="source-tag"><span class="rss-dot"></span> BleepingComputer</span>
-                      <span class="source-tag"><span class="rss-dot"></span> The Hacker News</span>
-                      <span class="source-tag"><span class="rss-dot"></span> ANSSI</span>
-                    </div>
+
+                <div class="veille-topic-origin">
+                  <i class="fas fa-podcast veille-origin-icon"></i>
+                  <div>
+                    <p class="veille-origin-title">Comment j'en ai entendu parler</p>
+                    <p class="veille-origin-text">
+                      C'est en écoutant le <strong>WAN Show</strong>, le podcast hebdomadaire de Linus Tech Tips que je suis chaque semaine, que j'ai découvert RISC-V. Les discussions sur l'essor de cette architecture open source face à x86 et ARM m'ont immédiatement intrigué et poussé à creuser le sujet.
+                    </p>
                   </div>
                 </div>
-                
-                <!-- Veille Tools -->
-                <div class="veille-tools">
-                  <h4><i class="fas fa-tools"></i> Outils de veille</h4>
-                  <p>Pour centraliser ma veille technologique, j'utilise les outils suivants :</p>
-                  <div class="tools-list">
-                    <div class="tool-item">
-                      <i class="fas fa-rss-square"></i>
-                      <span>Thunderbird pour l'agrégation des flux RSS</span>
-                    </div>
-                    <div class="tool-item">
-                      <i class="fas fa-bell"></i>
-                      <span>Google Alerts pour les notifications par mots-clés</span>
-                    </div>
-                  </div>
+
+                <p class="veille-topic-desc">
+                  RISC-V est une architecture de processeur open source basée sur le principe RISC. Contrairement à x86 (Intel/AMD) ou ARM, elle est totalement libre de droits, ce qui permet à n'importe qui de concevoir ses propres puces. Elle gagne du terrain dans l'embarqué, le cloud et potentiellement les ordinateurs grand public.
+                </p>
+
+                <div class="veille-sources-row">
+                  <span class="veille-source-chip"><i class="fas fa-rss"></i> RISCV.org</span>
+                  <span class="veille-source-chip"><i class="fas fa-rss"></i> SiFive Blog</span>
+                  <span class="veille-source-chip"><i class="fab fa-reddit"></i> r/RISCV</span>
+                  <span class="veille-source-chip"><i class="fas fa-podcast"></i> WAN Show</span>
                 </div>
               </div>
+
+              <!-- Stéganographie Card -->
+              <div class="veille-topic-card">
+                <div class="veille-topic-header">
+                  <div class="veille-topic-icon stegano">
+                    <i class="fas fa-eye-slash"></i>
+                  </div>
+                  <div>
+                    <span class="veille-topic-label">Sécurité & Cryptographie</span>
+                    <h3>Stéganographie</h3>
+                  </div>
+                </div>
+
+                <div class="veille-topic-origin">
+                  <i class="fas fa-flag veille-origin-icon stegano"></i>
+                  <div>
+                    <p class="veille-origin-title">Comment j'en ai entendu parler</p>
+                    <p class="veille-origin-text">
+                      C'est la plateforme <strong>Root-Me</strong> qui m'a fait découvrir et aimer la stéganographie. En résolvant des challenges de type CTF, j'ai été confronté à des fichiers cachant des données dans des images ou des sons, ce qui m'a donné envie de suivre l'évolution de cette discipline de près.
+                    </p>
+                  </div>
+                </div>
+
+                <p class="veille-topic-desc">
+                  La stéganographie est l'art de dissimuler un message dans un support anodin (image, audio, vidéo, texte) sans que sa présence ne soit détectable. Contrairement au chiffrement qui rend un message illisible, la stéganographie cherche à en cacher l'existence même. Elle est utilisée aussi bien par des acteurs malveillants que pour la protection de données légitimes.
+                </p>
+
+                <div class="veille-sources-row">
+                  <span class="veille-source-chip stegano"><i class="fas fa-rss"></i> CERT-FR</span>
+                  <span class="veille-source-chip stegano"><i class="fas fa-rss"></i> BleepingComputer</span>
+                  <span class="veille-source-chip stegano"><i class="fas fa-rss"></i> ANSSI</span>
+                  <span class="veille-source-chip stegano"><i class="fas fa-flag"></i> Root-Me</span>
+                </div>
+              </div>
+
             </div>
+
+            <!-- Outils de veille -->
+            <div class="veille-tools-bar">
+              <p class="veille-tools-title"><i class="fas fa-toolbox"></i> Outils de veille utilisés</p>
+              <div class="veille-tools-chips">
+                <span class="veille-tool-chip"><i class="fas fa-rss-square"></i> Thunderbird RSS</span>
+                <span class="veille-tool-chip"><i class="fas fa-bell"></i> Google Alerts</span>
+                <span class="veille-tool-chip"><i class="fab fa-reddit"></i> Reddit</span>
+                <span class="veille-tool-chip"><i class="fas fa-podcast"></i> WAN Show</span>
+                <span class="veille-tool-chip"><i class="fas fa-flag"></i> Root-Me</span>
+                <span class="veille-tool-chip"><i class="fas fa-newspaper"></i> Hacker News</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
