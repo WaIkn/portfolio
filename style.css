@@ -703,6 +703,56 @@ section:nth-child(even) {
   font-size: 2.2rem;
 }
 
+/* Selected option highlight */
+.selected-option {
+  border: 2px solid var(--color-primary) !important;
+  background: linear-gradient(150deg, rgba(101, 214, 173, 0.08), rgba(28, 35, 51, 0.95)) !important;
+  box-shadow: 0 0 20px rgba(101, 214, 173, 0.15), var(--shadow-md) !important;
+}
+
+.selected-option .about-card-header {
+  background: rgba(101, 214, 173, 0.1) !important;
+  border-bottom: 1px solid rgba(101, 214, 173, 0.2) !important;
+  justify-content: space-between;
+}
+
+.selected-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(101, 214, 173, 0.15);
+  border: 1px solid rgba(101, 214, 173, 0.35);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+}
+
+/* Option card footer tags */
+.option-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid rgba(230, 241, 255, 0.06);
+}
+
+.option-tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: rgba(230, 241, 255, 0.05);
+  border: 1px solid rgba(230, 241, 255, 0.1);
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+}
+
+.selected-option .option-tag {
+  color: var(--color-primary);
+  background: rgba(101, 214, 173, 0.08);
+  border-color: rgba(101, 214, 173, 0.25);
+}
+
 .about-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
@@ -788,6 +838,37 @@ section:nth-child(even) {
 .school-card .about-card-header {
   background: rgba(230, 241, 255, 0.03);
   border-bottom: 1px solid rgba(230, 241, 255, 0.06);
+}
+
+.student-card .about-card-header {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: var(--space-5);
+}
+
+.student-card .profile-image-container {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.profile-info h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.profile-info .subtitle {
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  animation: none;
+  transform: none;
+  height: auto;
 }
 
 .school-card .about-card-header i {
@@ -2048,6 +2129,23 @@ section:nth-child(even) {
               border-color var(--transition-normal);
   position: relative;
   overflow: hidden;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.timeline-company-logo {
+  height: 48px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: brightness(1.1);
+  flex-shrink: 0;
 }
 
 .timeline-card::before {
