@@ -15,13 +15,6 @@ const utils = {
     };
   },
   
-  // Simple input sanitization
-  sanitizeInput: (input) => {
-    const div = document.createElement('div');
-    div.textContent = input;
-    return div.innerHTML;
-  },
-  
   // Check if element is in viewport
   isInViewport: (element) => {
     const rect = element.getBoundingClientRect();
@@ -42,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTopBar = document.getElementById('back-to-top-bar');
   const filterButtons = document.querySelectorAll('.filter-btn');
   const docCards = document.querySelectorAll('.doc-card');
-  const contactForm = document.getElementById('contact-form');
   const canvas = document.getElementById('hero-canvas');
   const typingTextElement = document.getElementById('typing-text');
   const veilleItems = document.querySelectorAll('.veille-item');
@@ -135,53 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // 5. Form submission with validation
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Form validation
-      const nameInput = document.getElementById('name');
-      const emailInput = document.getElementById('email');
-      const messageInput = document.getElementById('message');
-      
-      if (!nameInput.validity.valid || !emailInput.validity.valid || !messageInput.validity.valid) {
-        return;
-      }
-      
-      // Get and sanitize form data
-      const formData = new FormData(this);
-      const formDataObj = {};
-      formData.forEach((value, key) => {
-        formDataObj[key] = utils.sanitizeInput(value);
-      });
-      
-      // Visual feedback
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      const originalText = submitBtn.textContent;
-      
-      submitBtn.textContent = 'Envoi en cours...';
-      submitBtn.disabled = true;
-      
-      // Simulate form submission (in a real app, this would be an AJAX call)
-      setTimeout(() => {
-        submitBtn.textContent = 'Envoyé !';
-        submitBtn.style.backgroundColor = 'var(--color-secondary)';
-        
-        // Reset form
-        contactForm.reset();
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.backgroundColor = '';
-          submitBtn.disabled = false;
-        }, 3000);
-      }, 1500);
-    });
-  }
-  
-  // 6. Canvas animation (only initialize if canvas exists)
+  // 5. Canvas animation (only initialize if canvas exists)
   if (canvas) {
     initializeHeroAnimation(canvas);
   }
@@ -247,15 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
       item.style.transform = 'translateY(20px)';
       item.style.transition = `all 0.4s ease ${index * 0.1}s`;
       veilleObserver.observe(item);
-    });
-    
-    // Veille tag click handlers using event delegation
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('veille-tag')) {
-        const tagText = e.target.textContent.trim().toLowerCase();
-        console.log(`Filter by: ${tagText}`);
-        // Future enhancement: implement filtering by tag
-      }
     });
   }
   
@@ -567,15 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 100);
   
   window.addEventListener('scroll', debouncedScroll);
-  window.addEventListener('resize', utils.debounce(() => {
-    if (canvas) {
-      // Resize canvas if it exists
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-  }, 200));
-  
+
   // Initialize all components
   setActiveNavItem();
   toggleBackToTopBar();
