@@ -60,6 +60,12 @@
           </a>
         </li>
         <li>
+          <a href="#missions" id="missions-link" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Missions</span>
+          </a>
+        </li>
+        <li>
           <a href="#certifications" id="certifications-link" class="nav-item">
             <i class="fas fa-certificate"></i>
             <span>Certifications</span>
@@ -275,8 +281,13 @@
                     <i class="fas fa-university"></i>
                   </div>
                   <div class="timeline-details">
-                    <h4>Licence Informatique</h4>
-                    <h5>Université Pierre et Marie Curie - Paris</h5>
+                    <div class="timeline-header">
+                      <div>
+                        <h4>Licence Informatique</h4>
+                        <h5>Université Pierre et Marie Curie - Paris</h5>
+                      </div>
+                      <img src="images/UPMC.png" alt="UPMC" class="timeline-company-logo">
+                    </div>
                     <p>Formation universitaire en informatique couvrant les bases théoriques et pratiques de l'informatique : algorithmique, programmation, structures de données, bases de données, et mathématiques appliquées à l'informatique.</p>
                     <div class="timeline-tags">
                       <span class="timeline-tag">Algorithmique</span>
@@ -400,6 +411,148 @@
               <span>Voir mon CV</span>
               <i class="fas fa-arrow-up-right-from-square parcours-cv-btn-icon"></i>
             </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MISSIONS SECTION -->
+      <section id="missions">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          <h2>Missions</h2>
+        </div>
+        <div class="section-content">
+
+          <!-- MISSION 1 - Professional -->
+          <div class="mission-block">
+            <div class="mission-meta">
+              <span class="mission-type pro">Professionnel</span>
+              <span class="mission-context">RATP, Paris</span>
+              <span class="mission-date">2025</span>
+            </div>
+            <div class="mission-body">
+              <div class="mission-text">
+                <h3 class="mission-title">Automatisation du contrôle réseau</h3>
+                <p class="mission-desc">Aux arrêts de bus, des écrans affichent la direction et le temps d'attente avant le prochain passage. À bord, le bus affiche lui aussi sa destination et les prochains arrêts. Lorsqu'une course n'est pas enregistrée dans la base de données, ces informations disparaissent des deux côtés : l'arrêt et le bus ne savent tout simplement pas quoi montrer.</p>
+                <p class="mission-desc">J'ai développé un outil qui détecte automatiquement ces courses manquantes, en comparant chaque jour ce qui est présent en base de données avec ce qui circule réellement sur le réseau. Dès qu'un écart est repéré, un rapport est généré, envoyé par mail aux équipes concernées et archivé, sans aucune intervention manuelle.</p>
+                <div class="mission-tags">
+                  <span class="mission-tag">Bash</span>
+                  <span class="mission-tag">PostgreSQL</span>
+                  <span class="mission-tag">Automatisation</span>
+                  <span class="mission-tag">Supervision</span>
+                </div>
+              </div>
+              <div class="mission-media">
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MISSION 2 - Professional -->
+          <div class="mission-block reverse">
+            <div class="mission-meta">
+              <span class="mission-type pro">Professionnel</span>
+              <span class="mission-context">INSERM, Paris</span>
+              <span class="mission-date">2024 - Présent</span>
+            </div>
+            <div class="mission-body">
+              <div class="mission-text">
+                <h3 class="mission-title">Gestion et supervision des équipements médicaux</h3>
+                <p class="mission-desc">L'INSERM collecte des données de santé depuis des appareils médicaux connectés (pompes à seringues, respirateurs, EEG...) pour alimenter une base de données utilisée par les chercheurs. Mon rôle couvre deux axes principaux.</p>
+                <p class="mission-desc">D'abord, la configuration des équipements : lorsqu'un appareil est neuf ou tombe en panne, je le reconfigure, notamment au niveau réseau, pour qu'il communique correctement avec le reste du système. J'échange directement avec les fabricants (BBraun pour les pompes, Masimo pour les EEG, Mindray pour les respirateurs) pour résoudre les problèmes techniques.</p>
+                <p class="mission-desc">Ensuite, j'ai mis en place un système de supervision : un tableau de bord qui permet de voir en temps réel si les appareils sont en ligne, si les serveurs et la base de données fonctionnent correctement, et d'être alerté automatiquement en cas de problème. Pour cela, j'ai configuré les outils qui collectent les données des appareils, et créé les graphiques et alertes correspondants.</p>
+                <div class="mission-tags">
+                  <span class="mission-tag">OpenTelemetry</span>
+                  <span class="mission-tag">Prometheus</span>
+                  <span class="mission-tag">Grafana</span>
+                  <span class="mission-tag">Docker</span>
+                  <span class="mission-tag">Systemd</span>
+                  <span class="mission-tag">Réseau</span>
+                </div>
+              </div>
+              <div class="mission-media">
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MISSION 3 - Scholaire -->
+          <div class="mission-block">
+            <div class="mission-meta">
+              <span class="mission-type school">Scolaire</span>
+              <span class="mission-context">IPSSI, E6</span>
+              <span class="mission-date">2024 - 2025</span>
+            </div>
+            <div class="mission-body">
+              <div class="mission-text">
+                <h3 class="mission-title">Supervision de l'infrastructure avec Zabbix</h3>
+                <p class="mission-desc">Dans le cadre de l'épreuve E6 du BTS, nous avons monté une infrastructure réseau complète à l'école. Ma mission a été d'y intégrer un outil de supervision : Zabbix.</p>
+                <p class="mission-desc">Concrètement, Zabbix permet de surveiller en permanence l'état des machines et services qui composent l'infrastructure. Si un serveur tombe ou qu'un service ne répond plus, une alerte est déclenchée automatiquement. J'ai configuré les hôtes à surveiller, défini les seuils d'alerte et mis en place des tableaux de bord pour visualiser la santé globale du réseau.</p>
+                <div class="mission-tags">
+                  <span class="mission-tag">Zabbix</span>
+                  <span class="mission-tag">Supervision</span>
+                  <span class="mission-tag">Réseau</span>
+                  <span class="mission-tag">Administration système</span>
+                </div>
+              </div>
+              <div class="mission-media">
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MISSION 4 - Scholaire -->
+          <div class="mission-block reverse">
+            <div class="mission-meta">
+              <span class="mission-type school">Scolaire</span>
+              <span class="mission-context">IPSSI, E6</span>
+              <span class="mission-date">2024 - 2025</span>
+            </div>
+            <div class="mission-body">
+              <div class="mission-text">
+                <h3 class="mission-title">Répartition de charge avec HAProxy</h3>
+                <p class="mission-desc">Toujours sur la même infrastructure montée à l'école, j'ai mis en place HAProxy, un outil qui répartit automatiquement les visiteurs entre deux serveurs web.</p>
+                <p class="mission-desc">L'idée est simple : si un seul serveur reçoit toutes les requêtes, il peut saturer. Avec HAProxy placé en entrée, le trafic est distribué équitablement entre les deux serveurs. Si l'un des deux tombe en panne, l'autre prend le relai sans interruption pour l'utilisateur. J'ai configuré HAProxy pour gérer cette répartition et vérifié le bon fonctionnement du basculement.</p>
+                <div class="mission-tags">
+                  <span class="mission-tag">HAProxy</span>
+                  <span class="mission-tag">Load Balancing</span>
+                  <span class="mission-tag">Réseau</span>
+                  <span class="mission-tag">Haute disponibilité</span>
+                </div>
+              </div>
+              <div class="mission-media">
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+                <div class="mission-screenshot placeholder-screenshot">
+                  <i class="fas fa-image"></i>
+                  <span>Capture d'écran</span>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
