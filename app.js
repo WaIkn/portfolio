@@ -109,18 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter documents
         docCards.forEach(card => {
           if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-            card.style.display = 'flex';
-            // Add animation
-            requestAnimationFrame(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            });
+            card.classList.remove('doc-card--hidden');
           } else {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-              card.style.display = 'none';
-            }, 300);
+            card.classList.add('doc-card--hidden');
           }
         });
       });
@@ -511,4 +502,23 @@ document.addEventListener('DOMContentLoaded', () => {
   setupDocumentFiltering();
   initializeTypingAnimation();
   setupVeilleAnimations();
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.mission-screenshot img, .veille-screenshot img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+
+  const closeLightbox = () => lightbox.classList.remove('open');
+
+  lightbox.addEventListener('click', closeLightbox);
+  lightboxImg.addEventListener('click', e => e.stopPropagation());
+  document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 });
